@@ -65,7 +65,11 @@ public class TsagentApplication extends JFrame {
 					try {
 						Thread.sleep(500);
 					} catch (InterruptedException e) {}
-				}				
+				}
+				
+				JOptionPane.showMessageDialog(TsagentApplication.this, "Processed "+TsagentApplication.this.files.length+" images", "Complete", JOptionPane.INFORMATION_MESSAGE);
+				
+				
 			}
 		});
 		
