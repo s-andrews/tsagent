@@ -17,7 +17,7 @@ public class ImageReader {
 		ImagePlus measureImage = new ImagePlus(wholeImage.getImageStack().getSliceLabel(2),wholeImage.getImageStack().getProcessor(2));
 		borderImage.setCalibration(wholeImage.getCalibration());
 
-		return new TsagentImageSet(borderImage, measureImage);
+		return new TsagentImageSet(file, borderImage, measureImage);
 		
 	}
 	

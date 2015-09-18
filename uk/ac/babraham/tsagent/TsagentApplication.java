@@ -16,6 +16,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
+import ij.io.FileSaver;
 import uk.ac.babraham.tsagent.analysis.ImageAnalyser;
 import uk.ac.babraham.tsagent.analysis.IntensityDistancePoint;
 import uk.ac.babraham.tsagent.analysis.ResultSet;
@@ -60,6 +61,10 @@ public class TsagentApplication extends JFrame {
 					catch (IOException ioe) {
 						JOptionPane.showMessageDialog(TsagentApplication.this, "Failed to process "+TsagentApplication.this.files[f]+" "+ioe.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					}
+					
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {}
 				}				
 			}
 		});
@@ -82,6 +87,14 @@ public class TsagentApplication extends JFrame {
 		getContentPane().add(new ImageSetPanel(imageSet),BorderLayout.CENTER);
 		validate();
 		repaint();
+		
+		// Write out the modified files to save the QC
+		FileSaver fs = new FileSaver(imageSet.borderImage());
+		fs.saveAsTiff(imageSet.file().getAbsolutePath()+"_border.tif");
+		
+		FileSaver fs2 = new FileSaver(imageSet.measureImage());
+		fs2.saveAsTiff(imageSet.file().getAbsolutePath()+"_measure.tif");
+		
 	}
 
 	public void writeResults (File file) throws IOException {
@@ -111,7 +124,7 @@ public class TsagentApplication extends JFrame {
 			
 			JMenu fileMenu = new JMenu("File");
 			
-			JMenuItem fileOpen = new JMenuItem("Analyse");
+			JMenuItem fileOpen = new JMenuItem("Process Images");
 			fileOpen.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent e) {
@@ -143,6 +156,17 @@ public class TsagentApplication extends JFrame {
 			});
 			
 			fileMenu.add(fileOpen);
+			
+			JMenuItem fileExit = new JMenuItem("Exit");
+			fileExit.addActionListener(new ActionListener() {
+				
+				public void actionPerformed(ActionEvent e) {
+					System.exit(0);
+				}
+			});
+			
+			fileMenu.addSeparator();
+			fileMenu.add(fileExit);
 			
 			add(fileMenu);
 		}

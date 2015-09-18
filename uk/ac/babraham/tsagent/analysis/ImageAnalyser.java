@@ -139,7 +139,7 @@ public class ImageAnalyser {
 				
 				System.err.println("Added data intensity="+proc.get(x,line)+" distance="+closestDistance);
 				results.addDataPoint(new IntensityDistancePoint(proc.get(x,line), closestDistance));
-//				proc.set(x, line,5000);
+				proc.set(x, line,5000);
 				
 			}
 			
