@@ -90,10 +90,10 @@ public class TsagentApplication extends JFrame {
 		
 		// Write out the modified files to save the QC
 		FileSaver fs = new FileSaver(imageSet.borderImage());
-		fs.saveAsTiff(imageSet.file().getAbsolutePath()+"_border.tif");
+		fs.saveAsJpeg(imageSet.file().getAbsolutePath()+"_border.jpg");
 		
 		FileSaver fs2 = new FileSaver(imageSet.measureImage());
-		fs2.saveAsTiff(imageSet.file().getAbsolutePath()+"_measure.tif");
+		fs2.saveAsJpeg(imageSet.file().getAbsolutePath()+"_measure.jpg");
 		
 	}
 

@@ -137,7 +137,7 @@ public class ImageAnalyser {
 					if (thisDistance < closestDistance) closestDistance = thisDistance;
 				}
 				
-				System.err.println("Added data intensity="+proc.get(x,line)+" distance="+closestDistance);
+//				System.err.println("Added data intensity="+proc.get(x,line)+" distance="+closestDistance);
 				results.addDataPoint(new IntensityDistancePoint(proc.get(x,line), closestDistance));
 				proc.set(x, line,5000);
 				
